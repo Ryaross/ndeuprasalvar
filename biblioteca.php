@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+header("Acess-Control-Allow-Origin:*");
+session_start();
   $user = 'root';
   $pass = '';
   $banco = 'projetobiblioteca';
@@ -89,14 +91,27 @@
   }
   /*			genero      */
   function CadastrarGenero($nome){
-      $sql = 'INSERT INTO genero VALUES(null,"'.$nome.'")';
-      $res = $GLOBALS['conn']->query($sql);
-      if($res){		
-          echo "Gênero Cadastrado";
-      }else{
-          echo "Erro ao Cadastrar".$GLOBALS['conn']->error;
-      }
+    $sql = 'INSERT INTO genero VALUES (null, "'.$nome.'")';
+    $res  = $GLOBALS['conn']->query($sql);
+    if($res){
+      echo "Gênero cadastrado";
+    } else {
+      echo "Erro ao cadastrar"; 
+    }
   }
+
+/*
+
+  function CadastrarEditora($nome){
+    $sql = 'INSERT INTO editora VALUES (null, "'.$nome.'")';
+    $res  = $GLOBALS['conn']->query($sql);
+    if($res){
+      echo "Editora cadastrada";
+    } else {
+      echo "Erro ao cadastrar"; 
+    }
+  }
+*/
   function ExcluirGenero($cd){
       $sql = 'DELETE FROM genero WHERE cd = '.$cd;
       $res = $GLOBALS['conn']->query($sql);
@@ -107,7 +122,7 @@
       }
   }
   
-  function ListarGenero($gen){
+/*  function ListarGenero($gen){
       $sql = 'SELECT * FROM genero';
       if($gen !=""){
           $sql.= ' WHERE cd = ' .$cd;
@@ -115,5 +130,66 @@
       $res = $GLOBALS['conn']->query($sql);
       return $res;
       
+  }
+*/
+  function CadastrarEditora($nome){
+    $sql = 'INSERT INTO editora VALUES (null, "'.$nome.'")';
+    $res  = $GLOBALS['conn']->query($sql);
+    if($res){
+      echo "Editora cadastrada";
+    } else {
+      echo "Erro ao cadastrar"; 
+    }
+  }
+  function CadastrarAutor($nome){
+    $sql = 'INSERT INTO autor VALUES (null, "'.$nome.'")';
+    $res  = $GLOBALS['conn']->query($sql);
+    if($res){
+      echo "Autor cadastrado";
+    } else {
+      echo "Erro ao cadastrar"; 
+    }
+  }
+  function MostrarAutor(){
+    $query = "SELECT * from autor";
+    $result = $GLOBALS['conn']->query($query);
+    if($result){
+      while($fetch = $result->fetch_assoc()) {
+        echo "<tr>";
+        foreach ($fetch as $field => $value) {
+            echo '<td>'.$value.'</td>' ;
+        }
+      }
+    } else{
+      echo "Erro";
+    }
+  }
+  function MostrarGenero(){
+    $query = "SELECT * from genero";
+    $result = $GLOBALS['conn']->query($query);
+    if($result){
+      while($fetch = $result->fetch_assoc()) {
+        echo "<tr>";
+        foreach ($fetch as $field => $value) {
+            echo '<td>'.$value.'</td>' ;
+        }
+      }
+    } else{
+      echo "Erro";
+    }
+  }
+  function MostrarEditora(){
+    $query = "SELECT * from editora";
+    $result = $GLOBALS['conn']->query($query);
+    if($result){
+      while($fetch = $result->fetch_assoc()) {
+        echo "<tr>";
+        foreach ($fetch as $field => $value) {
+            echo '<td>'.$value.'</td>' ;
+        }
+      }
+    } else{
+      echo "Erro";
+    }
   }
 ?>

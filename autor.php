@@ -2,19 +2,19 @@
 include('biblioteca.php');
 ?>
 
-<form method="post" id="novoGenero">
+<form method="post" id="novoAutor">
     <fieldset>
-        <legend> Novo Gênero</legend>
-        Nome: <input type="text" name="genero"><br>
+        <legend> Novo Autor</legend>
+        Nome: <input type="text" name="autor"><br>
         <button>Cadastrar </button>
 </fieldset>
 </form>
 <?php
-    if(isset($_POST['genero'])){
-        CadastrarGenero($_POST['genero']);
+    if(isset($_POST['autor'])){
+        CadastrarAutor($_POST['autor']);
     }
     ?>
-    <h1> Gêneros Cadastrados</h1>
+    <h1> Autores Cadastrados</h1>
     <table>
         <tr>
             <td>Nome</td>
@@ -28,9 +28,8 @@ include('biblioteca.php');
         <th>Nome</th>
         </tr>
         ";
-        MostrarGenero();
+        MostrarAutor();
         echo "
         </table>";
     
 ?>
-
